@@ -5,7 +5,7 @@ from telebot import types
 import content
 from content import predictions
 
-bot = telebot.TeleBot('5002158195:AAF7fVkvQ6pXWCihoxeDjWv0HVUeje1fX5k')
+bot = telebot.TeleBot('55k')
 # @bot.message_handler(content_types=['text', 'document'])
 # def inline(message):
 #     bot.send_message(message.chat.id, text='ID ' + str(message.id) + " " + message.from_user.username)
