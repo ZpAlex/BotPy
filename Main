@@ -3,7 +3,7 @@ from telebot import types
 import content
 #@AutomaticPokerBot
 print("Все молодцы, бот запущен, будет тупить перезапустите его")
-bot = telebot.TeleBot('5173719685:AAFW8i9pz23Q583qJIZBdimHZBCkqVxTyNc')
+bot = telebot.TeleBot('')
 
 Lan1 = 1
 
