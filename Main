@@ -1,0 +1,116 @@
+import telebot
+from telebot import types
+import content
+#@AutomaticPokerBot
+print("Все молодцы, бот запущен, будет тупить перезапустите его")
+bot = telebot.TeleBot('5173719685:AAFW8i9pz23Q583qJIZBdimHZBCkqVxTyNc')
+
+Lan1 = 1
+
+users = {}
+
+@bot.message_handler(content_types='text', commands=['start'])
+def start(message):
+    bot.send_message(message.chat.id, text=content.Welcome, reply_markup=langKB)
+
+
+
+langKB = types.ReplyKeyboardMarkup(resize_keyboard=True)
+lang_btn1 = types.KeyboardButton(text='Русский 🇷🇺')
+lang_btn2 = types.KeyboardButton(text='English 🇺🇸')
+lang_btn3 = types.KeyboardButton(text='Spain 🇪🇸')
+lang_btn4 = types.KeyboardButton(text='Portugal 🇵🇹')
+lang_btn5 = types.KeyboardButton(text='Italy 🇮🇹')
+langKB.add(lang_btn1)
+langKB.add(lang_btn2, lang_btn3)
+langKB.add(lang_btn4, lang_btn5)
+
+
+@bot.message_handler(content_types=['text','commands', "document","file"])
+def choice_room(message):
+    if message.chat.id not in users:
+        users[message.chat.id] = {'lang': 1}
+
+    if message.text == "Русский 🇷🇺":
+        bot.send_message(message.chat.id, text='Выбран Русский язык', reply_markup=roomsKB)
+        Lan1 =1
+        users[message.chat.id]['lang'] = 1
+        bot.send_message(message.chat.id, text=content.RusInfo)
+    elif message.text == "English 🇺🇸":
+        bot.send_message(message.chat.id, text='Selected English', reply_markup=roomsKB)
+        Lan1 =2
+        users[message.chat.id]['lang'] = 2
+        bot.send_message(message.chat.id, text=content.EngInfo)
+    elif message.text == "Spain 🇪🇸":
+        bot.send_message(message.chat.id, text='Idioma español seleccionado', reply_markup=roomsKB)
+        users[message.chat.id]['lang'] = 3
+        bot.send_message(message.chat.id, text=content.SpainInfo, reply_markup=roomsKB)
+    elif message.text == "◀️":
+        bot.send_message(message.chat.id, text="/start", reply_markup=roomsKB)
+    elif message.text == "Portugal 🇵🇹":
+        bot.send_message(message.chat.id, text='Idioma português selecionado', reply_markup=roomsKB)
+        users[message.chat.id]['lang'] = 4
+        bot.send_message(message.chat.id, text=content.PortInfo, reply_markup=roomsKB)
+    elif message.text == "Italy 🇮🇹":
+        bot.send_message(message.chat.id, text='Lingua italiana selezionata', reply_markup=roomsKB)
+        users[message.chat.id]['lang'] = 5
+        bot.send_message(message.chat.id, text=content.ItalyInfo, reply_markup=roomsKB)
+    elif message.text == 'Bovada':
+            if users[message.chat.id]['lang'] == 1:
+                bot.send_message(message.chat.id, text=content.RusBovada, reply_markup=roomsKB)
+            elif users[message.chat.id]['lang'] == 2:
+                bot.send_message(message.chat.id, text=content.EngBovada, reply_markup=roomsKB)
+            elif users[message.chat.id]['lang'] == 3:
+                bot.send_message(message.chat.id, text=content.SpainBovada, reply_markup=roomsKB)
+            elif users[message.chat.id]['lang'] == 4:
+                bot.send_message(message.chat.id, text=content.PortBovada, reply_markup=roomsKB)
+            elif users[message.chat.id]['lang'] == 5:
+                bot.send_message(message.chat.id, text=content.ItalyBovada, reply_markup=roomsKB)
+    elif message.text == 'PPPoker':
+            if users[message.chat.id]['lang'] == 1:
+                bot.send_message(message.chat.id, text=content.RusPPPoker, reply_markup=roomsKB)
+            elif users[message.chat.id]['lang'] == 2:
+                bot.send_message(message.chat.id, text=content.EngPPPoker, reply_markup=roomsKB)
+            elif users[message.chat.id]['lang'] == 3:
+                bot.send_message(message.chat.id, text=content.SpainPPPoker, reply_markup=roomsKB)
+            elif users[message.chat.id]['lang'] == 4:
+                bot.send_message(message.chat.id, text=content.PortPPPoker, reply_markup=roomsKB)
+            elif users[message.chat.id]['lang'] == 5:
+                bot.send_message(message.chat.id, text=content.ItalyPPPoker, reply_markup=roomsKB)
+    elif message.text == 'GGPokerok':
+            if users[message.chat.id]['lang'] == 1:
+                bot.send_message(message.chat.id, text=content.RusBros, reply_markup=roomsKB)
+            elif users[message.chat.id]['lang'] == 2:
+                bot.send_message(message.chat.id, text=content.EngBros, reply_markup=roomsKB)
+            elif users[message.chat.id]['lang'] == 3:
+                bot.send_message(message.chat.id, text=content.SpainBros, reply_markup=roomsKB)
+            elif users[message.chat.id]['lang'] == 4:
+                bot.send_message(message.chat.id, text=content.PortBros, reply_markup=roomsKB)
+            elif users[message.chat.id]['lang'] == 5:
+                bot.send_message(message.chat.id, text=content.ItalyBros, reply_markup=roomsKB)
+    elif message.text == 'PokerBros':
+            if users[message.chat.id]['lang'] == 1:
+                bot.send_message(message.chat.id, text=content.RusBros, reply_markup=roomsKB)
+            elif users[message.chat.id]['lang'] == 2:
+                bot.send_message(message.chat.id, text=content.EngBros, reply_markup=roomsKB)
+            elif users[message.chat.id]['lang'] == 3:
+                bot.send_message(message.chat.id, text=content.SpainBros, reply_markup=roomsKB)
+            elif users[message.chat.id]['lang'] == 4:
+                bot.send_message(message.chat.id, text=content.PortBros, reply_markup=roomsKB)
+            elif users[message.chat.id]['lang'] == 5:
+                bot.send_message(message.chat.id, text=content.ItalyBros, reply_markup=roomsKB)
+    else:
+        bot.forward_message(-1001619919912, message.chat.id, message.id)
+        bot.reply_to(message, "🆗")
+        bot.send_message(-1001619919912, text='Давай малыш, ипотека сама себя не закроет.Постучался с заявочкой @' + message.from_user.username, )
+
+roomsKB = types.ReplyKeyboardMarkup(resize_keyboard=True)
+room1 = types.KeyboardButton('Bovada')
+room2 = types.KeyboardButton('GGPokerok')
+room3 = types.KeyboardButton('PokerBros')
+room4 = types.KeyboardButton('PPPoker')
+room5 = types.KeyboardButton('◀️')
+roomsKB.add(room1, room2)
+roomsKB.add(room3, room4)
+roomsKB.add(room5)
+bot.polling(none_stop=True, interval=0)
